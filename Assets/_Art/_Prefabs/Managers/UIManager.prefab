@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4928596577795342237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286086724381963260}
+  - component: {fileID: 4507121419650686422}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1286086724381963260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928596577795342237}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -135.3861, y: 23.025366, z: 3.0583375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4507121419650686422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928596577795342237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81fb0e3461b79642bc0000526d8bc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hudGroup: {fileID: 0}
+  _pausePanel: {fileID: 0}
+  _gameOverPanel: {fileID: 0}
+  _levelCompletePanel: {fileID: 0}
+  _showHealthBar: 1
+  _showStaminaBar: 1
+  _showPowerMeter: 1
+  _enableFeedbackEffects: 1
+  _healthBarGroup: {fileID: 0}
+  _staminaBarGroup: {fileID: 0}
+  _powerMeterGroup: {fileID: 0}
+  _healthBarFill: {fileID: 0}
+  _staminaBarFill: {fileID: 0}
+  _staminaBarAnimator: {fileID: 0}
+  _powerPhases:
+  - phaseName: 
+    meterBaseSprite: {fileID: 21300000, guid: 34d9d9d71c4c8d043a7a57b12c38c8bb, type: 3}
+    meterFillColor: {r: 0, g: 0, b: 0, a: 0}
+    powerRequiredToComplete: 3
+  - phaseName: 
+    meterBaseSprite: {fileID: 21300000, guid: a595b6c11f96dd64ba3441e874a24b2f, type: 3}
+    meterFillColor: {r: 0, g: 0, b: 0, a: 0}
+    powerRequiredToComplete: 5
+  - phaseName: 
+    meterBaseSprite: {fileID: 21300000, guid: e4c466f1f16cf4e4b8210a252ae3fd7d, type: 3}
+    meterFillColor: {r: 0, g: 0, b: 0, a: 0}
+    powerRequiredToComplete: 10
+  - phaseName: 
+    meterBaseSprite: {fileID: 21300000, guid: 66a310795ade83f4594530bb3ed2250b, type: 3}
+    meterFillColor: {r: 0, g: 0, b: 0, a: 0}
+    powerRequiredToComplete: 15
+  _powerMeterBase: {fileID: 0}
+  _powerMeterFill: {fileID: 0}
+  _fullPowerOverlay: {fileID: 0}
+  _phaseShiftParticles: {fileID: 0}
+  _tempCoinDisplayParent: {fileID: 0}
+  _chiliCoinCountText: {fileID: 0}
+  _chickenCoinCountText: {fileID: 0}
+  _statsUSBParent: {fileID: 0}
+  _statsUSBText: {fileID: 0}
+  _statsUSBAnimator: {fileID: 0}
+  _staminaFailColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _staminaFailDuration: 0.5
+  _negativeFeedbackColor: {r: 1, g: 1, b: 1, a: 1}
+  _negativeFeedbackDuration: 0.5
+  _tempCoinDisplayDuration: 3

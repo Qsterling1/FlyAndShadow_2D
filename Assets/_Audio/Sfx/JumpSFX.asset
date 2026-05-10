@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd9c3ae5feb2c04ebaf51496dd1ba63, type: 3}
+  m_Name: JumpSFX
+  m_EditorClassIdentifier: 
+  Name: 
+  Clip: {fileID: 8300000, guid: 49a1e10d9e029384bba565aaef416577, type: 3}
+  Volume: 1
+  Pitch: 2.748
+  Loop: 0

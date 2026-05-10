@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d591f454d36018647b578bb573f562d8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _onMainMenuMusicEvent: {fileID: 11400000, guid: 87aeee977dc3fc643a54075b00b64e2b, type: 2}
+  - _onGameplayMusicEvent: {fileID: 11400000, guid: a1e25268be8e509458cf3cdfff6b24a9, type: 2}
+  - _onLevelCompleteMusicEvent: {fileID: 11400000, guid: 2de84375c5d515247bd8e71beccadb2e, type: 2}
+  - _onGameOverSfxEvent: {fileID: 11400000, guid: 4544ac33be278854493e10f576fb8b59, type: 2}
+  - _onGameOverMusicEvent: {fileID: 11400000, guid: cb2cbf14d0ef804498108cae9ef1c9b2, type: 2}
+  - _onPlayerDied: {fileID: 11400000, guid: 4b9ba740884584746b0329a0ea7e0785, type: 2}
+  executionOrder: -200
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

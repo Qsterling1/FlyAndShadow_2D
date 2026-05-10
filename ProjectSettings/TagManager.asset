@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Pickup
+  - Ground
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Ground
+  - Collectibles
+  - Obstacles
+  - Enemy
+  - Background
+  - water1
+  - water2
+  - water3
+  - Sky
+  - BigBackGround
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Sky
+    uniqueID: 2472431829
+    locked: 0
+  - name: BigBackgorund
+    uniqueID: 3077121461
+    locked: 0
+  - name: Background
+    uniqueID: 2411745571
+    locked: 0
+  - name: Midground
+    uniqueID: 3432059071
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 140639365
+    locked: 0
+  - name: Player
+    uniqueID: 163207417
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1718884749
+    locked: 0
+  - name: 'Foreground '
+    uniqueID: 3432032733
+    locked: 0
+  - name: water 1
+    uniqueID: 2822247645
+    locked: 0
+  - name: water 2
+    uniqueID: 3791864005
+    locked: 0
+  - name: water3
+    uniqueID: 809593803
+    locked: 0
+  m_RenderingLayers:
+  - Default

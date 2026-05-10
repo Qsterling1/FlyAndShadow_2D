@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 99feb56def71a9042a3dc1a3215c967f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _onPlayerDied: {fileID: 11400000, guid: 4544ac33be278854493e10f576fb8b59, type: 2}
+  - _spriteRenderer: {instanceID: 0}
+  executionOrder: -103
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
