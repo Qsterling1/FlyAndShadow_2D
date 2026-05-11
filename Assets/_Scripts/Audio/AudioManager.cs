@@ -9,6 +9,12 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+    private const string MasterVolumeKey = "settings.masterVolume";
+    private const string MusicVolumeKey = "settings.musicVolume";
+    private const string SfxVolumeKey = "settings.sfxVolume";
+    private const string MusicMutedKey = "settings.musicMuted";
+    private const string SfxMutedKey = "settings.sfxMuted";
+
     [Header("Music Handling")]
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private List<AudioCue> _gameplayMusicPlaylist;
@@ -30,6 +36,18 @@ public class AudioManager : MonoBehaviour
     private readonly Dictionary<AudioRegistry.Binding, int> _strategyState = new Dictionary<AudioRegistry.Binding, int>();
     private readonly List<(GameEvent gameEvent, Action handler)> _registryHandlers = new List<(GameEvent, Action)>();
     private readonly System.Random _random = new System.Random();
+    private AudioCue _currentMusicCue;
+    private float _masterVolume = 1f;
+    private float _musicVolume = 1f;
+    private float _sfxVolume = 1f;
+    private bool _musicMuted;
+    private bool _sfxMuted;
+
+    public float MasterVolume => _masterVolume;
+    public float MusicVolume => _musicVolume;
+    public float SfxVolume => _sfxVolume;
+    public bool MusicMuted => _musicMuted;
+    public bool SfxMuted => _sfxMuted;
 
     private static readonly Dictionary<PlaybackStrategyType, IPlaybackStrategy> _playbackStrategies = new Dictionary<PlaybackStrategyType, IPlaybackStrategy>
     {
@@ -56,6 +74,8 @@ public class AudioManager : MonoBehaviour
         {
             _musicSource = gameObject.AddComponent<AudioSource>();
         }
+
+        LoadAudioSettings();
 
         RegisterRegistryBindings();
         EventManager.Subscribe<GameStateChangedEvent>(OnGameStateChanged);
@@ -209,7 +229,7 @@ private void Start()
 
         if (cue != null)
         {
-            PlaySound(cue);
+            PlaySound(cue, payload.IgnoreSfxMute);
         }
     }
 
@@ -242,6 +262,11 @@ private void Start()
 
     public void PlaySound(AudioCue cue)
     {
+        PlaySound(cue, false);
+    }
+
+    public void PlaySound(AudioCue cue, bool ignoreSfxMute)
+    {
         if (cue == null || cue.Clip == null || _sfxSourcePool.Count == 0)
         {
             return;
@@ -255,7 +280,8 @@ private void Start()
             source.Stop();
         }
 
-        ConfigureSource(source, cue);
+        float channelVolume = ignoreSfxMute ? _masterVolume * _sfxVolume : GetEffectiveSfxVolume();
+        ConfigureSource(source, cue, channelVolume);
 
         if (cue.Loop)
         {
@@ -274,7 +300,8 @@ private void Start()
             return;
         }
 
-        ConfigureSource(_musicSource, musicCue);
+        _currentMusicCue = musicCue;
+        ConfigureSource(_musicSource, musicCue, GetEffectiveMusicVolume());
         _musicSource.loop = musicCue.Loop;
         _musicSource.Play();
     }
@@ -290,7 +317,97 @@ private void Start()
         PlayMusic(randomTrack);
     }
 
-    private static void ConfigureSource(AudioSource source, AudioCue cue)
+    public void SetMasterVolume(float volume)
+    {
+        _masterVolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(MasterVolumeKey, _masterVolume);
+        ApplyAudioSettings();
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        _musicVolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(MusicVolumeKey, _musicVolume);
+        ApplyAudioSettings();
+    }
+
+    public void SetSfxVolume(float volume)
+    {
+        _sfxVolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(SfxVolumeKey, _sfxVolume);
+        ApplyAudioSettings();
+    }
+
+    public void SetMusicMuted(bool muted)
+    {
+        _musicMuted = muted;
+        PlayerPrefs.SetInt(MusicMutedKey, _musicMuted ? 1 : 0);
+        ApplyAudioSettings();
+    }
+
+    public void SetSfxMuted(bool muted)
+    {
+        _sfxMuted = muted;
+        PlayerPrefs.SetInt(SfxMutedKey, _sfxMuted ? 1 : 0);
+        ApplyAudioSettings();
+    }
+
+    public void ResetAudioSettings()
+    {
+        _masterVolume = 1f;
+        _musicVolume = 1f;
+        _sfxVolume = 1f;
+        _musicMuted = false;
+        _sfxMuted = false;
+
+        PlayerPrefs.SetFloat(MasterVolumeKey, _masterVolume);
+        PlayerPrefs.SetFloat(MusicVolumeKey, _musicVolume);
+        PlayerPrefs.SetFloat(SfxVolumeKey, _sfxVolume);
+        PlayerPrefs.SetInt(MusicMutedKey, 0);
+        PlayerPrefs.SetInt(SfxMutedKey, 0);
+        ApplyAudioSettings();
+    }
+
+    private void LoadAudioSettings()
+    {
+        _masterVolume = PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
+        _musicVolume = PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
+        _sfxVolume = PlayerPrefs.GetFloat(SfxVolumeKey, 1f);
+        _musicMuted = PlayerPrefs.GetInt(MusicMutedKey, 0) == 1;
+        _sfxMuted = PlayerPrefs.GetInt(SfxMutedKey, 0) == 1;
+        ApplyAudioSettings();
+    }
+
+    private void ApplyAudioSettings()
+    {
+        if (_musicSource != null && _currentMusicCue != null)
+        {
+            _musicSource.volume = _currentMusicCue.Volume * GetEffectiveMusicVolume();
+        }
+
+        float sfxVolume = GetEffectiveSfxVolume();
+        foreach (var source in _sfxSourcePool)
+        {
+            if (source != null)
+            {
+                source.volume = sfxVolume;
+            }
+        }
+
+        PlayerPrefs.Save();
+    }
+
+    private float GetEffectiveMusicVolume()
+    {
+        return _musicMuted ? 0f : _masterVolume * _musicVolume;
+    }
+
+    private float GetEffectiveSfxVolume()
+    {
+        return _sfxMuted ? 0f : _masterVolume * _sfxVolume;
+    }
+
+    private static void ConfigureSource(AudioSource source, AudioCue cue, float channelVolume)
     {
         if (source == null || cue == null)
         {
@@ -298,7 +415,7 @@ private void Start()
         }
 
         source.clip = cue.Clip;
-        source.volume = cue.Volume;
+        source.volume = cue.Volume * channelVolume;
         source.pitch = cue.Pitch;
         source.loop = cue.Loop;
     }

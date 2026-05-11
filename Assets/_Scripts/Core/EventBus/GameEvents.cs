@@ -9,6 +9,7 @@ namespace FlyShadow.EventBus
     {
         public AudioCue Cue;
         public string SoundName;
+        public bool IgnoreSfxMute;
     }
 
     /// <summary>
