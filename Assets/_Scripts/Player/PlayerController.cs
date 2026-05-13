@@ -153,18 +153,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("Flying Settings")]
     [Tooltip("A flat speed bonus added when the player first transitions into the Flying state.")]
-    [SerializeField] private float _flightTransitionSpeedBonus = 5f; // Add this line!
+    [SerializeField] private float _flightTransitionSpeedBonus = 5f;
     [Tooltip("The minimum horizontal speed the player will have when entering the flying state.")]
-    [SerializeField] private float _minFlightSpeed = 15f; // Add this line!
+    [SerializeField] private float _minFlightSpeed = 15f;
     [Tooltip("The vertical speed when controlling the player's flight.")]
     [SerializeField] private float _flightControlSpeed = 8f;
     [Tooltip("The gravity scale applied during flight. 0 is weightless, higher values are heavier.")]
     [SerializeField] private float _flightGravityScale = 0.5f;
     [Tooltip("The speed multiplier for the flight speed burst.")]
     [SerializeField] private float _flightSpeedBurstMultiplier = 1.5f;
-    //... other flying variables
     [Tooltip("The rate at which stamina is drained per second during a flight speed burst.")]
-    [SerializeField] private float _flightBurstStaminaDrainRate = 30f; // Add this line!
+    [SerializeField] private float _flightBurstStaminaDrainRate = 30f;
 
     [Header("Advanced Maneuvers")]
     [Tooltip("The rate at which stamina is drained per second while in an advanced maneuver (Spin, Barrel Roll).")]
@@ -823,7 +822,7 @@ if (_isGrounded && Time.time - _lastFootstepTime >= _footstepInterval)
     // === Core Logic ===
     private void HandleMovement()
     {
-        if (_isStunned) return; // <-- ADD THIS LINE
+        if (_isStunned) return;
 
 
         //... (rest of the method is the same)

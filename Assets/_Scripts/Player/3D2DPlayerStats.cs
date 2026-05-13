@@ -7,6 +7,7 @@ using FlyShadow.EventBus;
 /// Manages the player's core survival stats like Health and Stamina.
 /// It also handles taking damage, invincibility, and notifies the UI when stats change.
 /// </summary>
+[System.Obsolete("Dead 3D2D family. Active player uses PlayerStats. Do not wire into new code.")]
 public class ThreeD2DPlayerStats : MonoBehaviour
 {
     // === Singleton Instance ===

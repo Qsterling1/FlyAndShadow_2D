@@ -235,7 +235,9 @@ public class ResourceEffect
 
         private void ApplyDamage(PlayerStats stats, Vector3 impactPosition)
         {
+#if UNITY_EDITOR
             Debug.Log("--- TRYING TO APPLY DAMAGE ---");
+#endif
             stats.ModifyHealth(damageEffect.amount);
 
 

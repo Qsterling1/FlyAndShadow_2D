@@ -184,14 +184,18 @@ public class SessionStatsTracker : MonoBehaviour
     /// </summary>
     private void OnCurrencyModified(CurrencyModifiedEvent e)
     {
+#if UNITY_EDITOR
         Debug.Log($"[SessionStatsTracker] OnCurrencyModified - Amount: {e.Amount}");
+#endif
         if (e.Amount > 0)
         {
             if (CoinCounter.instance != null)
             {
                 _chiliCoinsCollected = CoinCounter.instance.ChiliCoins;
                 _chickenCoinsCollected = CoinCounter.instance.ChickenCoins;
+#if UNITY_EDITOR
                 Debug.Log($"[SessionStatsTracker] Coins updated - Chili: {_chiliCoinsCollected}, Chicken: {_chickenCoinsCollected}");
+#endif
             }
 
             _totalPickupsCollected++;
@@ -217,7 +221,9 @@ public class SessionStatsTracker : MonoBehaviour
     /// </summary>
     private void OnPlayerManeuverExecuted(PlayerManeuverExecutedEvent e)
     {
+#if UNITY_EDITOR
         Debug.Log($"[SessionStatsTracker] OnPlayerManeuverExecuted - Maneuver: {e.ManeuverType}");
+#endif
         switch (e.ManeuverType)
         {
             case ManeuverType.Spin:
@@ -237,7 +243,9 @@ public class SessionStatsTracker : MonoBehaviour
     /// </summary>
     private void OnPlayerSpeedChanged(PlayerSpeedChangedEvent e)
     {
+#if UNITY_EDITOR
         Debug.Log($"[SessionStatsTracker] OnPlayerSpeedChanged - CurrentSpeed: {e.CurrentSpeed}, MaxSpeed: {e.MaxSpeed}");
+#endif
         if (e.CurrentSpeed > _maxSpeedAchieved)
         {
             _maxSpeedAchieved = e.CurrentSpeed;

@@ -19,8 +19,9 @@ public class GameEvent : ScriptableObject
     /// </summary>
     public void Raise()
     {
-        // As requested, this log provides clear debugging information in the console.
+#if UNITY_EDITOR
         Debug.Log($"<color=cyan>EVENT RAISED:</color> {this.name}");
+#endif
         _onEventRaised?.Invoke();
     }
 

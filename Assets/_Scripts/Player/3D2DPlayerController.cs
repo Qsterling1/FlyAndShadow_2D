@@ -7,6 +7,7 @@ using FlyShadow.EventBus;
 /// 3D2D Player Controller - Uses 3D character model with 2D physics for 2.5D gameplay.
 /// Animator component must be on a child GameObject.
 /// </summary>
+[System.Obsolete("Dead 3D2D family. Active player uses PlayerController. Do not wire into new code.")]
 public class ThreeD2DPlayerController : MonoBehaviour
 {
     // === Private Fields ===
@@ -144,18 +145,17 @@ public class ThreeD2DPlayerController : MonoBehaviour
 
     [Header("Flying Settings")]
     [Tooltip("A flat speed bonus added when the player first transitions into the Flying state.")]
-    [SerializeField] private float _flightTransitionSpeedBonus = 5f; // Add this line!
+    [SerializeField] private float _flightTransitionSpeedBonus = 5f;
     [Tooltip("The minimum horizontal speed the player will have when entering the flying state.")]
-    [SerializeField] private float _minFlightSpeed = 15f; // Add this line!
+    [SerializeField] private float _minFlightSpeed = 15f;
     [Tooltip("The vertical speed when controlling the player's flight.")]
     [SerializeField] private float _flightControlSpeed = 8f;
     [Tooltip("The gravity scale applied during flight. 0 is weightless, higher values are heavier.")]
     [SerializeField] private float _flightGravityScale = 0.5f;
     [Tooltip("The speed multiplier for the flight speed burst.")]
     [SerializeField] private float _flightSpeedBurstMultiplier = 1.5f;
-    //... other flying variables
     [Tooltip("The rate at which stamina is drained per second during a flight speed burst.")]
-    [SerializeField] private float _flightBurstStaminaDrainRate = 30f; // Add this line!
+    [SerializeField] private float _flightBurstStaminaDrainRate = 30f;
 
     [Header("Advanced Maneuvers")]
     [Tooltip("The rate at which stamina is drained per second while in an advanced maneuver (Spin, Barrel Roll).")]
@@ -448,7 +448,6 @@ public class ThreeD2DPlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("1. PlayerController Update");
         CheckGrounded();
         ManageState();
         HandleVariableJump();
@@ -596,7 +595,6 @@ else
 
     private void HandleRunningState()
     {
-        Debug.Log("2. PlayerController HandleRunningState");
         if (_allowAdvancedManeuvers && Input.GetKeyDown(KeyCode.UpArrow) && !_isBypassActive)
         {
             StartCoroutine(BypassCoroutine(_animTriggerSpinMove));
@@ -837,8 +835,7 @@ if (_isGrounded && Time.time - _lastFootstepTime >= _footstepInterval)
     // === Core Logic ===
     private void HandleMovement()
     {
-        Debug.Log("3. PlayerController HandleMovement");
-        if (_isStunned) return; // <-- ADD THIS LINE
+        if (_isStunned) return;
 
 
         //... (rest of the method is the same)
@@ -971,8 +968,6 @@ if (_isGrounded && Time.time - _lastFootstepTime >= _footstepInterval)
     private void HandleAnimations()
     {
         if (_animator == null) return; // Null guard
-
-        Debug.Log("4. PlayerController HandleAnimations");
 
         // Velocity tracking
         _animator.SetFloat("yVelocity", _rb.linearVelocity.y);

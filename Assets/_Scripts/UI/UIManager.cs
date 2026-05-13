@@ -193,7 +193,9 @@ public class UIManager : MonoBehaviour
 
     private void HandleCoinUpdate()
     {
+#if UNITY_EDITOR
         Debug.Log("--- CHECKPOINT 3: UIManager.cs heard the event from CoinCounter and is updating the UI.");
+#endif
         if (_activeCoinDisplayCoroutine != null) StopCoroutine(_activeCoinDisplayCoroutine);
         _activeCoinDisplayCoroutine = StartCoroutine(ShowCoinUpdate_Coroutine());
     }

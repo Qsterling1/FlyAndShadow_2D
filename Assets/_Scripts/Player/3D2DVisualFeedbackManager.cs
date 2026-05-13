@@ -7,6 +7,7 @@ using FlyShadow.EventBus;
 /// 3D2D version - Smoothly applies glow/contrast feedback based on player vitals and collectible boosts.
 /// Uses SkinnedMeshRenderer for 3D character models.
 /// </summary>
+[System.Obsolete("Dead 3D2D family. Active player uses VisualFeedbackManager. Do not wire into new code.")]
 public class ThreeD2DVisualFeedbackManager : MonoBehaviour
 {
     [Header("Renderer")]

@@ -371,7 +371,7 @@ public class GameManager : MonoBehaviour
     {
         TimeScaleDebugger.timeScale = 1f; // IMPORTANT: Unpause before loading
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        ChangeState(GameState.LevelStarting); // <-- ADD THIS LINE
+        ChangeState(GameState.LevelStarting);
     }
     public void ReturnToMenu()
     {
