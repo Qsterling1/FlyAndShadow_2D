@@ -111,3 +111,25 @@ QA.md
 GITIGNORE_SUMMARY.md
 ignore.conf
 .vscode/
+
+# Local screenshots / capture dumps (not for repo)
+/Assets/Screenshots/
+/Assets/Screenshots.meta
+
+# IDE caches that slip through
+*.lscache
+
+# Collectibles sprite library: AI-generated, pending manual curation.
+# Block the entire folder, then opt-in only the sprites the scene actually uses.
+# As more sprites are curated, add matching `!` entries below.
+/Assets/_Art/_Sprites/_UI/Collectibles/*
+!/Assets/_Art/_Sprites/_UI/Collectibles/Achievement_Speedster.png
+!/Assets/_Art/_Sprites/_UI/Collectibles/Achievement_Speedster.png.meta
+!/Assets/_Art/_Sprites/_UI/Collectibles/Badge_New.png
+!/Assets/_Art/_Sprites/_UI/Collectibles/Badge_New.png.meta
+!/Assets/_Art/_Sprites/_UI/Collectibles/Character_LatrellNewton.png
+!/Assets/_Art/_Sprites/_UI/Collectibles/Character_LatrellNewton.png.meta
+!/Assets/_Art/_Sprites/_UI/Collectibles/Collectibles_Background.png
+!/Assets/_Art/_Sprites/_UI/Collectibles/Collectibles_Background.png.meta
+!/Assets/_Art/_Sprites/_UI/Collectibles/DruryStar_001.png
+!/Assets/_Art/_Sprites/_UI/Collectibles/DruryStar_001.png.meta
